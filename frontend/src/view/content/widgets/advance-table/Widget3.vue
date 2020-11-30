@@ -12,12 +12,10 @@
         >
       </h3>
       <div class="card-toolbar">
-        <a href="#" class="btn btn-info font-weight-bolder font-size-sm mr-3"
+        <a class="btn btn-info font-weight-bolder font-size-sm mr-3"
           >New Arrivals</a
         >
-        <a href="#" class="btn btn-danger font-weight-bolder font-size-sm"
-          >Create</a
-        >
+        <a class="btn btn-danger font-weight-bolder font-size-sm">Create</a>
       </div>
     </div>
     <!--end::Header-->
@@ -57,7 +55,6 @@
                       </div>
                       <div>
                         <a
-                          href="#"
                           class="text-dark-75 font-weight-bolder text-hover-primary mb-1 font-size-lg"
                           >{{ item.name }}</a
                         >
@@ -96,7 +93,7 @@
                   </td>
                   <td>
                     <img
-                      src="/media/logos/stars.png"
+                      src="media/logos/stars.png"
                       alt="image"
                       style="width: 5rem"
                     />
@@ -106,7 +103,6 @@
                   </td>
                   <td class="pr-0 text-right">
                     <a
-                      href="#"
                       class="btn btn-light-success font-weight-bolder font-size-sm"
                       >View Offer</a
                     >

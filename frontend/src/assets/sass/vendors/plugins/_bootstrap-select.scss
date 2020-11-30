@@ -238,9 +238,14 @@ $bootstrap-select-title-padding: 10px 15px;
     }
 
     .dropdown-menu {
+        max-width: 100% !important;
         border-top: none !important;
         border: 0;
         box-shadow: $dropdown-box-shadow;
+
+        &.show {
+            width: auto;
+        }
     }
 }
 

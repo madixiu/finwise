@@ -6,11 +6,12 @@ export const VERIFY_AUTH = "verifyAuth";
 export const LOGIN = "login";
 export const LOGOUT = "logout";
 export const REGISTER = "register";
-export const UPDATE_USER = "updateUser";
+export const UPDATE_PASSWORD = "updateUser";
 
 // mutation types
 export const PURGE_AUTH = "logOut";
 export const SET_AUTH = "setUser";
+export const SET_PASSWORD = "setPassword";
 export const SET_ERROR = "setError";
 
 const state = {
@@ -33,6 +34,7 @@ const actions = {
     return new Promise(resolve => {
       ApiService.post("login", credentials)
         .then(({ data }) => {
+          // console.log("Here what post returns", data);
           context.commit(SET_AUTH, data);
           resolve(data);
         })
@@ -45,15 +47,14 @@ const actions = {
     context.commit(PURGE_AUTH);
   },
   [REGISTER](context, credentials) {
-    return new Promise((resolve, reject) => {
-      ApiService.post("users", { user: credentials })
+    return new Promise(resolve => {
+      ApiService.post("login", credentials)
         .then(({ data }) => {
           context.commit(SET_AUTH, data);
           resolve(data);
         })
         .catch(({ response }) => {
           context.commit(SET_ERROR, response.data.errors);
-          reject(response);
         });
     });
   },
@@ -71,15 +72,11 @@ const actions = {
       context.commit(PURGE_AUTH);
     }
   },
-  [UPDATE_USER](context, payload) {
-    const { email, username, password, image, bio } = payload;
-    const user = { email, username, bio, image };
-    if (password) {
-      user.password = password;
-    }
+  [UPDATE_PASSWORD](context, payload) {
+    const password = payload;
 
-    return ApiService.put("user", user).then(({ data }) => {
-      context.commit(SET_AUTH, data);
+    return ApiService.put("password", password).then(({ data }) => {
+      context.commit(SET_PASSWORD, data);
       return data;
     });
   }
@@ -94,6 +91,9 @@ const mutations = {
     state.user = user;
     state.errors = {};
     JwtService.saveToken(state.user.token);
+  },
+  [SET_PASSWORD](state, password) {
+    state.user.password = password;
   },
   [PURGE_AUTH](state) {
     state.isAuthenticated = false;

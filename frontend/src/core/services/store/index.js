@@ -1,12 +1,11 @@
 import Vue from "vue";
 import Vuex from "vuex";
 
-// import auth from "./auth.module";
+import auth from "./auth.module";
 import htmlClass from "./htmlclass.module";
 import config from "./config.module";
 import breadcrumbs from "./breadcrumbs.module";
-import option from "./option.module";
-import auth from "./auth";
+import profile from "./profile.module";
 
 Vue.use(Vuex);
 
@@ -16,6 +15,6 @@ export default new Vuex.Store({
     htmlClass,
     config,
     breadcrumbs,
-    option
+    profile
   }
 });

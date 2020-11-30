@@ -8,12 +8,12 @@
     no-flip
   >
     <template v-slot:button-content>
-      <i class="ki ki-bold-more-ver"></i>
+      <i class="ki ki-bold-more-hor"></i>
     </template>
     <!--begin::Navigation-->
     <div class="navi navi-hover min-w-md-250px">
       <b-dropdown-text tag="div" class="navi-item">
-        <a href="#" class="navi-link">
+        <a class="navi-link">
           <span class="navi-icon">
             <i class="flaticon2-group"></i>
           </span>
@@ -21,7 +21,7 @@
         </a>
       </b-dropdown-text>
       <b-dropdown-text tag="div" class="navi-item">
-        <a href="#" class="navi-link">
+        <a class="navi-link">
           <span class="navi-icon">
             <i class="flaticon2-open-text-book"></i>
           </span>
@@ -29,7 +29,7 @@
         </a>
       </b-dropdown-text>
       <b-dropdown-text tag="div" class="navi-item">
-        <a href="#" class="navi-link">
+        <a class="navi-link">
           <span class="navi-icon">
             <i class="flaticon2-rocket-1"></i>
           </span>
@@ -43,7 +43,7 @@
         </a>
       </b-dropdown-text>
       <b-dropdown-text tag="div" class="navi-item">
-        <a href="#" class="navi-link">
+        <a class="navi-link">
           <span class="navi-icon">
             <i class="flaticon2-bell-2"></i>
           </span>
@@ -51,7 +51,7 @@
         </a>
       </b-dropdown-text>
       <b-dropdown-text tag="div" class="navi-item">
-        <a href="#" class="navi-link">
+        <a class="navi-link">
           <span class="navi-icon">
             <i class="flaticon2-dashboard"></i>
           </span>
@@ -60,7 +60,7 @@
       </b-dropdown-text>
       <b-dropdown-text tag="div" class="navi-separator my-3"></b-dropdown-text>
       <b-dropdown-text tag="div" class="navi-item">
-        <a href="#" class="navi-link">
+        <a class="navi-link">
           <span class="navi-icon">
             <i class="flaticon2-protected"></i>
           </span>
@@ -68,7 +68,7 @@
         </a>
       </b-dropdown-text>
       <b-dropdown-text tag="div" class="navi-item">
-        <a href="#" class="navi-link">
+        <a class="navi-link">
           <span class="navi-icon">
             <i class="flaticon2-bell-2"></i>
           </span>

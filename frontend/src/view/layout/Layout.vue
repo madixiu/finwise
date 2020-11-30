@@ -1,6 +1,5 @@
 <template>
   <div class="d-flex flex-column flex-root" v-if="isAuthenticated">
-    <!-- <div class="d-flex flex-column flex-root"> -->
     <!-- begin:: Header Mobile -->
     <KTHeaderMobile></KTHeaderMobile>
     <!-- end:: Header Mobile -->
@@ -10,7 +9,7 @@
     <!-- begin::Body -->
     <div class="d-flex flex-row flex-column-fluid page">
       <!-- begin:: Aside Left -->
-      <KTAside v-if="selectedRoute"></KTAside>
+      <KTAside v-if="asideEnabled"></KTAside>
       <!-- end:: Aside Left -->
 
       <div id="kt_wrapper" class="d-flex flex-column flex-row-fluid wrapper">
@@ -50,7 +49,7 @@
         <KTFooter></KTFooter>
       </div>
     </div>
-    <!-- <KTStickyToolbar v-if="toolbarDisplay"></KTStickyToolbar> -->
+    <KTStickyToolbar v-if="toolbarDisplay"></KTStickyToolbar>
     <KTScrollTop></KTScrollTop>
   </div>
 </template>
@@ -63,7 +62,7 @@ import KTHeaderMobile from "@/view/layout/header/HeaderMobile.vue";
 import KTFooter from "@/view/layout/footer/Footer.vue";
 import HtmlClass from "@/core/services/htmlclass.service";
 import KTSubheader from "@/view/layout/subheader/Subheader.vue";
-// import KTStickyToolbar from "@/view/layout/extras/StickyToolbar.vue";
+import KTStickyToolbar from "@/view/layout/extras/StickyToolbar.vue";
 import KTScrollTop from "@/view/layout/extras/ScrollTop";
 import Loader from "@/view/content/Loader.vue";
 import {
@@ -79,15 +78,9 @@ export default {
     KTHeaderMobile,
     KTFooter,
     KTSubheader,
-    // KTStickyToolbar,
+    KTStickyToolbar,
     KTScrollTop,
     Loader
-  },
-  data() {
-    return {
-      selectedRoute: true,
-      NonAsideRoutes: ["marketmap", "oraq", "shakhes", "robot"]
-    };
   },
   beforeMount() {
     // show page loading
@@ -108,27 +101,7 @@ export default {
       this.$store.dispatch(REMOVE_BODY_CLASSNAME, "page-loading");
     }, 2000);
   },
-  watch: {
-    $route: "fetchRoute"
-  },
-  methods: {
-    fetchRoute() {
-      let route = this.$route.name;
-      if (this.NonAsideRoutes.includes(route)) {
-        this.selectedRoute = false;
-        this.$store.dispatch(REMOVE_BODY_CLASSNAME, "aside-enabled");
-        this.$store.dispatch(REMOVE_BODY_CLASSNAME, "aside-fixed");
-        // this.$store.dispatch(REMOVE_BODY_CLASSNAME, "aside-static");
-        this.$store.dispatch(REMOVE_BODY_CLASSNAME, "aside-minimize");
-      } else {
-        this.selectedRoute = true;
-        this.$store.dispatch(ADD_BODY_CLASSNAME, "aside-enabled");
-        this.$store.dispatch(ADD_BODY_CLASSNAME, "aside-fixed");
-        // this.$store.dispatch(ADD_BODY_CLASSNAME, "aside-static");
-        this.$store.dispatch(ADD_BODY_CLASSNAME, "aside-minimize");
-      }
-    }
-  },
+  methods: {},
   computed: {
     ...mapGetters([
       "isAuthenticated",

@@ -18,7 +18,7 @@
             >
               <div class="wizard-label">
                 <i class="wizard-icon flaticon-bus-stop"></i>
-                <h3 class="wizard-title">1. Setup Location</h3>
+                <h31 class="wizard-title">1. Setup Location</h31>
               </div>
               <i class="wizard-arrow flaticon2-next"></i>
             </div>

@@ -24,6 +24,7 @@
         :options="chartOptions"
         :series="series"
         type="area"
+        width="100%"
       ></apexchart>
       <!--end::Chart-->
     </div>
@@ -85,7 +86,7 @@ export default {
         colors: [this.layoutConfig("colors.theme.base.success")]
       },
       xaxis: {
-        categories: ["Feb", "Mar", "Apr", "May", "Jun", "Jul"],
+        categories: ["Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug"],
         axisBorder: {
           show: false
         },
@@ -110,18 +111,12 @@ export default {
           }
         },
         tooltip: {
-          enabled: true,
-          formatter: undefined,
-          offsetY: 0,
-          style: {
-            fontSize: "12px",
-            fontFamily: this.layoutConfig("font-family")
-          }
+          enabled: false
         }
       },
       yaxis: {
         min: 0,
-        max: 50,
+        max: 55,
         show: false,
         labels: {
           show: false,

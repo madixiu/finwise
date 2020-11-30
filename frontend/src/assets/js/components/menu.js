@@ -467,6 +467,7 @@ var KTMenu = function(elementId, options) {
                 } else {
                     KTUtil.slideUp(submenu, speed, function() {
                         Plugin.scrollToItem(item);
+                        Plugin.scrollUpdate();
                         Plugin.eventTrigger('submenuToggle', submenu, e);
                     });
 

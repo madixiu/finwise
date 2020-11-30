@@ -4,248 +4,21 @@ import Router from "vue-router";
 Vue.use(Router);
 
 export default new Router({
-  mode: "history",
   routes: [
     {
       path: "/",
-      redirect: "/StockMarket",
+      redirect: "/dashboard",
       component: () => import("@/view/layout/Layout"),
       children: [
         {
-          path: "/StockMarket",
-          name: "StockMarket",
-          redirect: "/StockMarket/Market/Dashboard/",
-          component: () =>
-            import("@/view/pages/StockMarket/StockMarketParent.vue"),
-          children: [
-            {
-              path: "Market/Dashboard",
-              name: "Dashboard",
-              component: () => import("@/view/pages/StockMarket/Dashboard.vue")
-            },
-            {
-              path: "Market/MarketWatch",
-              name: "marketwatch",
-              component: () => import("@/view/pages/MarketWatch.vue")
-            },
-            {
-              path: "Industries",
-              name: "Industries",
-              component: () => import("@/view/pages/Saham/Industries.vue")
-            },
-            {
-              path: "Screener",
-              name: "Screener",
-              component: () => import("@/view/pages/Saham/Qarbal.vue")
-            },
-            {
-              path: "Fundamental",
-              name: "Fundamental",
-              component: () => import("@/view/pages/Saham/Bonyad.vue")
-            },
-            {
-              path: "Technical/Dashboard",
-              name: "TechnicalDashboard",
-              component: () =>
-                import("@/view/pages/Saham/Technical/GoldPrice.vue")
-            },
-            {
-              path: "Techincal/Tools",
-              name: "TechnicalTools",
-              component: () => import("@/view/pages/Saham/Technical/Tools.vue")
-            },
-            {
-              path: "Technical/Data",
-              name: "TechnicalData",
-              component: () => import("@/view/pages/Saham/Technical/Data.vue")
-            },
-            {
-              path: "Assembly/Calendar",
-              name: "AssemblyCalendar",
-              component: () => import("@/view/pages/Saham/Majame/Calendar.vue")
-            },
-            {
-              path: "Assembly/IncreaseCapitals",
-              name: "AssemblyIC",
-              component: () => import("@/view/pages/Saham/Majame/Afzayesh.vue")
-            },
-            {
-              path: "Taghadom",
-              name: "Taghadom",
-              component: () => import("@/view/pages/Saham/Taqadom.vue")
-            },
-            {
-              path: "Option",
-              name: "Option",
-              component: () => import("@/view/pages/Saham/Option.vue")
-            },
-            {
-              path: "Funds",
-              name: "Funds",
-              component: () => import("@/view/pages/Saham/Sandoq.vue")
-            }
-          ]
-        },
-        {
-          path: "/kala",
-          name: "kala",
-          redirect: "/kala/bourse",
-          component: () => import("@/view/pages/Kala/Kala.vue"),
-          children: [
-            {
-              path: "bourse",
-              name: "bourse",
-              component: () => import("@/view/pages/Kala/Bourse.vue")
-            },
-            {
-              path: "global",
-              name: "global",
-              component: () => import("@/view/pages/Kala/Global.vue")
-            }
-          ]
+          path: "/dashboard",
+          name: "dashboard",
+          component: () => import("@/view/pages/Dashboard.vue")
         },
         {
           path: "/builder",
           name: "builder",
           component: () => import("@/view/pages/Builder.vue")
-        },
-        {
-          path: "/marketmap",
-          name: "marketmap",
-          component: () => import("@/view/pages/MarketMap/MarketMap.vue")
-        },
-        {
-          path: "/oraq",
-          name: "oraq",
-          component: () => import("@/view/pages/Oraq/Oraq.vue")
-        },
-        {
-          path: "/shakhes",
-          name: "shakhes",
-          component: () => import("@/view/pages/Shakhes/Shakhes.vue")
-        },
-        //added route for ticker!
-        {
-          path: "/ticker",
-          name: "ticker",
-          redirect: "/ticker/Overview/",
-          component: () => import("@/view/pages/Ticker/Ticker.vue"),
-          children: [
-            {
-              path: "Overview/Overall/:id",
-              name: "TickerOverall",
-              component: () => import("@/view/pages/Ticker/Overview.vue")
-            },
-            {
-              path: "Overview/Administration/:id",
-              name: "Administration",
-              component: () => import("@/view/pages/Ticker/Administration.vue")
-            },
-            {
-              path: "Overview/Notifications/:id",
-              name: "Notifications",
-              component: () =>
-                import("@/view/pages/Ticker/CodalNotifications.vue")
-            },
-            {
-              path: "Overview/StatusChange/:id",
-              name: "StatusChange",
-              component: () => import("@/view/pages/Ticker/StatusChange.vue")
-            },
-            {
-              path: "Overview/HH/:id",
-              name: "HH",
-              component: () => import("@/view/pages/Ticker/HH.vue")
-            },
-            {
-              path: "Overview/Board/:id",
-              name: "Board",
-              component: () => import("@/view/pages/Ticker/Board.vue")
-            },
-            {
-              path: "Overview/shareholders/:id",
-              name: "shareholders",
-              component: () => import("@/view/pages/Ticker/ShareHolders.vue")
-            },
-            {
-              path: "AdjustedPrices/:id",
-              name: "AdjustedPrices",
-              component: () => import("@/view/pages/Ticker/AdjustedPrices.vue")
-            },
-            {
-              path: "TickerFundamental/:id",
-              name: "TickerFundamental",
-              component: () => import("@/view/pages/Ticker/Bonyadi.vue")
-            },
-            {
-              path: "TickerTechnical/:id",
-              name: "TickerTechnical",
-              component: () => import("@/view/pages/Ticker/SahmTechnical.vue")
-            },
-            {
-              path: "Sheets/:id",
-              name: "Sheets",
-              component: () => import("@/view/pages/Ticker/Surats.vue")
-            },
-            {
-              path: "Monthly/:id",
-              name: "Monthly",
-              component: () => import("@/view/pages/Ticker/Monthly.vue")
-            },
-            {
-              path: "sahmRobot/:id",
-              name: "sahmRobot",
-              component: () => import("@/view/pages/Ticker/SahmRobot.vue")
-            },
-            {
-              path: "TickerRatio/:id",
-              name: "TickerRatio",
-              component: () => import("@/view/pages/Ticker/Relations.vue")
-            },
-            {
-              path: "TickerIndustry/:id",
-              name: "TickerIndustry",
-              component: () => import("@/view/pages/Ticker/Industry.vue")
-            },
-            {
-              path: "TickerAssembly/:id",
-              name: "TickerAssembly",
-              redirect: "/ticker/TickerAssembly/TickerAssemblyCalendar",
-              component: () => import("@/view/pages/Ticker/SahmMajame.vue")
-            },
-            {
-              path: "TickerAssembly/Calendar/:id",
-              name: "TickerAssemblyCalendar",
-              component: () => import("@/view/pages/Ticker/SahmMajame.vue")
-            },
-            {
-              path: "TickerAssembly/Report/:id",
-              name: "TickerAssemblyReport",
-              component: () => import("@/view/pages/Ticker/AssemblyAll.vue")
-            },
-            {
-              path: "TickerAssembly/DPS/:id",
-              name: "TickerAssemblyDPS",
-              component: () => import("@/view/pages/Ticker/AssemblyDPS.vue")
-            },
-            {
-              path: "TickerAssembly/IC/:id",
-              name: "TickerAssemblyIC",
-              component: () =>
-                import("@/view/pages/Ticker/AssemblyIncreaseCapital.vue")
-            },
-            {
-              path: "sarmaye/:id",
-              name: "sarmaye",
-              component: () => import("@/view/pages/Ticker/Sarmaye.vue")
-            }
-          ]
-        },
-        // added route for robot!
-        {
-          path: "/robot",
-          name: "robot",
-          component: () => import("@/view/pages/Robot/Robot.vue")
         },
         {
           path: "/vue-bootstrap",
@@ -418,9 +191,19 @@ export default new Router({
                 import("@/view/pages/vue-bootstrap/PaginationNav.vue")
             },
             {
-              path: "popover",
+              path: "notify-popover",
               name: "vue-bootstrap-popover",
               component: () => import("@/view/pages/vue-bootstrap/Popover.vue")
+            },
+            {
+              path: "notify-toasts",
+              name: "vue-bootstrap-toasts",
+              component: () => import("@/view/pages/vue-bootstrap/Toasts.vue")
+            },
+            {
+              path: "notify-tooltip",
+              name: "vue-bootstrap-tooltip",
+              component: () => import("@/view/pages/vue-bootstrap/Tooltip.vue")
             },
             {
               path: "progress",
@@ -428,7 +211,7 @@ export default new Router({
               component: () => import("@/view/pages/vue-bootstrap/Progress.vue")
             },
             {
-              path: "spinner",
+              path: "progress-spinner",
               name: "vue-bootstrap-spinner",
               component: () => import("@/view/pages/vue-bootstrap/Spinner.vue")
             },
@@ -441,16 +224,6 @@ export default new Router({
               path: "tabs",
               name: "vue-bootstrap-tabs",
               component: () => import("@/view/pages/vue-bootstrap/Tabs.vue")
-            },
-            {
-              path: "toasts",
-              name: "vue-bootstrap-toasts",
-              component: () => import("@/view/pages/vue-bootstrap/Toasts.vue")
-            },
-            {
-              path: "tooltip",
-              name: "vue-bootstrap-tooltip",
-              component: () => import("@/view/pages/vue-bootstrap/Tooltip.vue")
             }
           ]
         },
@@ -500,13 +273,13 @@ export default new Router({
               component: () => import("@/view/pages/vuetify/Dialog.vue")
             },
             {
-              path: "autocompletes",
+              path: "forms-autocompletes",
               name: "vuetify-autocompletes",
               component: () =>
                 import("@/view/pages/vuetify/forms/Autocompletes.vue")
             },
             {
-              path: "file-inputs",
+              path: "forms-file-inputs",
               name: "vuetify-file-inputs",
               component: () =>
                 import("@/view/pages/vuetify/forms/FileInputs.vue")
@@ -517,36 +290,36 @@ export default new Router({
               component: () => import("@/view/pages/vuetify/forms/Forms.vue")
             },
             {
-              path: "selection-controls",
+              path: "forms-selection-controls",
               name: "vuetify-selection-controls",
               component: () =>
                 import("@/view/pages/vuetify/forms/SelectionControls.vue")
             },
             {
-              path: "selects",
+              path: "forms-selects",
               name: "vuetify-selects",
               component: () => import("@/view/pages/vuetify/forms/Selects.vue")
             },
             {
-              path: "textareas",
+              path: "forms-textareas",
               name: "vuetify-textareas",
               component: () =>
                 import("@/view/pages/vuetify/forms/Textareas.vue")
             },
             {
-              path: "text-fields",
+              path: "forms-text-fields",
               name: "vuetify-text-fields",
               component: () =>
                 import("@/view/pages/vuetify/forms/TextFields.vue")
             },
             {
-              path: "simple-tables",
+              path: "tables-simple-tables",
               name: "vuetify-simple-tables",
               component: () =>
                 import("@/view/pages/vuetify/tables/SimpleTables.vue")
             },
             {
-              path: "data-tables",
+              path: "tables-data-tables",
               name: "vuetify-data-tables",
               component: () =>
                 import("@/view/pages/vuetify/tables/DataTables.vue")
@@ -574,7 +347,7 @@ export default new Router({
           ]
         },
         {
-          path: "/wizard",
+          path: "/custom-wizard",
           name: "wizard",
           component: () => import("@/view/pages/wizard/Wizard.vue"),
           children: [
@@ -601,7 +374,7 @@ export default new Router({
           ]
         },
         {
-          path: "/plugins",
+          path: "/custom-plugins",
           name: "plugins",
           component: () => import("@/view/pages/plugins/Plugins.vue"),
           children: [
@@ -609,13 +382,30 @@ export default new Router({
               path: "cropper",
               name: "cropper",
               component: () => import("@/view/pages/plugins/Cropper.vue")
+            },
+            {
+              path: "treeselect",
+              name: "treeselect",
+              component: () => import("@/view/pages/plugins/Treeselect.vue")
+            }
+          ]
+        },
+        {
+          path: "/custom-pages",
+          name: "custom-pages",
+          component: () => import("@/view/pages/custom_pages/CustomPages.vue"),
+          children: [
+            {
+              path: "profile",
+              name: "profile",
+              component: () => import("@/view/pages/custom_pages/Profile.vue")
             }
           ]
         }
       ]
     },
     {
-      path: "/error",
+      path: "/custom-error",
       name: "error",
       component: () => import("@/view/pages/error/Error.vue"),
       children: [
@@ -653,22 +443,17 @@ export default new Router({
     },
     {
       path: "/",
-      component: () => import("@/view/pages/auth/Auth"),
+      component: () => import("@/view/pages/auth/login_pages/Login-1"),
       children: [
         {
           name: "login",
           path: "/login",
-          component: () => import("@/view/pages/auth/Login")
+          component: () => import("@/view/pages/auth/login_pages/Login-1")
         },
         {
           name: "register",
           path: "/register",
-          component: () => import("@/view/pages/auth/Register")
-        },
-        {
-          name: "verify",
-          path: "/verify",
-          component: () => import("@/view/pages/auth/Verify")
+          component: () => import("@/view/pages/auth/login_pages/Login-1")
         }
       ]
     },

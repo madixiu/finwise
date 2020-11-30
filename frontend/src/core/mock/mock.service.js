@@ -36,6 +36,12 @@ const MockService = {
       return [404, { errors: ["The login detail is incorrect"] }];
     });
 
+    // mock info update request
+    mock.onPost("/personal_info").reply(data => {
+      users.user_personal_info = data;
+      return users.user_personal_info;
+    });
+
     // mock to verify authentication
     mock.onGet(/\/verify\/?/).reply(data => {
       const token = data.headers.Authorization.replace("Token ", "");

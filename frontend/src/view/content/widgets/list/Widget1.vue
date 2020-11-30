@@ -33,7 +33,7 @@
           <!--end::Symbol-->
           <!--begin::Text-->
           <div class="d-flex flex-column font-weight-bold">
-            <a href="#" class="text-dark text-hover-primary mb-1 font-size-lg">
+            <a class="text-dark text-hover-primary mb-1 font-size-lg">
               {{ item.title }}
             </a>
             <span class="text-muted">
