@@ -113,13 +113,7 @@ export default {
           }
         },
         tooltip: {
-          enabled: true,
-          formatter: undefined,
-          offsetY: 0,
-          style: {
-            fontSize: "12px",
-            fontFamily: this.layoutConfig("font-family")
-          }
+          enabled: false
         }
       },
       yaxis: {

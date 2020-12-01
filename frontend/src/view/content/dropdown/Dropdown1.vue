@@ -1,22 +1,19 @@
 <template>
   <b-dropdown
     size="sm"
-    variant="link"
+    variant="primary"
     toggle-class="btn btn-transparent-white btn-sm font-weight-bolder px-5"
-    no-caret
-    right
-    no-flip
     text="Export"
   >
     <!--begin::Navigation-->
-    <div class="navi navi-hover min-w-md-250px">
+    <div class="navi navi-hover min-w-md-200px">
       <b-dropdown-text tag="div" class="navi-header pb-1">
         <span class="text-primary text-uppercase font-weight-bold">
           Add new:
         </span>
       </b-dropdown-text>
       <b-dropdown-text tag="div" class="navi-item">
-        <a href="#" class="navi-link">
+        <a class="navi-link">
           <span class="navi-icon">
             <i class="flaticon2-graph-1"></i>
           </span>
@@ -26,7 +23,7 @@
         </a>
       </b-dropdown-text>
       <b-dropdown-text tag="div" class="navi-item">
-        <a href="#" class="navi-link">
+        <a class="navi-link">
           <span class="navi-icon">
             <i class="flaticon2-calendar-4"></i>
           </span>
@@ -36,7 +33,7 @@
         </a>
       </b-dropdown-text>
       <b-dropdown-text tag="div" class="navi-item">
-        <a href="#" class="navi-link">
+        <a class="navi-link">
           <span class="navi-icon">
             <i class="flaticon2-layers-1"></i>
           </span>
@@ -46,7 +43,7 @@
         </a>
       </b-dropdown-text>
       <b-dropdown-text tag="div" class="navi-item">
-        <a href="#" class="navi-link">
+        <a class="navi-link">
           <span class="navi-icon">
             <i class="flaticon2-calendar-4"></i>
           </span>
@@ -56,7 +53,7 @@
         </a>
       </b-dropdown-text>
       <b-dropdown-text tag="div" class="navi-item">
-        <a href="#" class="navi-link">
+        <a class="navi-link">
           <span class="navi-icon">
             <i class="flaticon2-file-1"></i>
           </span>
@@ -73,6 +70,9 @@
 <style lang="scss">
 .dropdown-menu {
   outline: none;
+}
+.b-dropdown-text {
+  padding: 0;
 }
 </style>
 

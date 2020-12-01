@@ -145,6 +145,9 @@ export default {
         axisTicks: {
           show: false
         },
+        tooltip: {
+          enabled: false
+        },
         labels: {
           show: false,
           style: {

@@ -5,7 +5,12 @@
     <div class="card-header border-0">
       <h3 class="card-title font-weight-bolder text-dark">Todo</h3>
       <div class="card-toolbar">
-        <Dropdown4></Dropdown4>
+        <Dropdown4
+          :btnClass="
+            'btn btn-light btn-sm font-size-sm font-weight-bolder dropdown-toggle text-dark-75'
+          "
+          :btnText="'Create'"
+        ></Dropdown4>
       </div>
     </div>
     <!--end::Header-->
@@ -32,7 +37,6 @@
           <!--begin::Text-->
           <div class="d-flex flex-column flex-grow-1">
             <a
-              href="#"
               class="text-dark-75 text-hover-primary font-weight-bold font-size-lg mb-1"
             >
               {{ item.title }}
@@ -43,7 +47,7 @@
           </div>
           <!--end::Text-->
           <!--begin::Dropdown-->
-          <Dropdown2></Dropdown2>
+          <Dropdown2><i class="ki ki-bold-more-hor"></i></Dropdown2>
           <!--end::Dropdown-->
         </div>
         <!--end:Item-->

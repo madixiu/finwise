@@ -8,7 +8,7 @@
     no-flip
   >
     <template v-slot:button-content>
-      <i class="ki ki-bold-more-ver"></i>
+      <slot></slot>
     </template>
     <!--begin::Navigation-->
     <div class="navi navi-hover min-w-md-250px">
@@ -26,7 +26,7 @@
         class="navi-separator mb-3 opacity-70"
       ></b-dropdown-text>
       <b-dropdown-text tag="div" class="navi-item">
-        <a href="#" class="navi-link">
+        <a class="navi-link">
           <span class="navi-text">
             <span class="label label-xl label-inline label-light-success">
               Customer
@@ -35,7 +35,7 @@
         </a>
       </b-dropdown-text>
       <b-dropdown-text tag="div" class="navi-item">
-        <a href="#" class="navi-link">
+        <a class="navi-link">
           <span class="navi-text">
             <span class="label label-xl label-inline label-light-danger">
               Partner
@@ -44,7 +44,7 @@
         </a>
       </b-dropdown-text>
       <b-dropdown-text tag="div" class="navi-item">
-        <a href="#" class="navi-link">
+        <a class="navi-link">
           <span class="navi-text">
             <span class="label label-xl label-inline label-light-warning">
               Suplier
@@ -53,7 +53,7 @@
         </a>
       </b-dropdown-text>
       <b-dropdown-text tag="div" class="navi-item">
-        <a href="#" class="navi-link">
+        <a class="navi-link">
           <span class="navi-text">
             <span class="label label-xl label-inline label-light-primary">
               Member
@@ -62,7 +62,7 @@
         </a>
       </b-dropdown-text>
       <b-dropdown-text tag="div" class="navi-item">
-        <a href="#" class="navi-link">
+        <a class="navi-link">
           <span class="navi-text">
             <span class="label label-xl label-inline label-light-dark">
               Staff
@@ -75,7 +75,7 @@
         class="navi-separator mt-3 opacity-70"
       ></b-dropdown-text>
       <b-dropdown-text tag="div" class="navi-footer pt-5 pb-4">
-        <a class="btn btn-clean font-weight-bold btn-sm" href="#">
+        <a class="btn btn-clean font-weight-bold btn-sm">
           <i class="ki ki-plus icon-sm"></i>Add new</a
         >
       </b-dropdown-text>

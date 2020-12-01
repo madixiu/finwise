@@ -12,7 +12,7 @@
         </span>
       </h3>
       <div class="card-toolbar">
-        <Dropdown2></Dropdown2>
+        <Dropdown2><i class="ki ki-bold-more-hor"></i></Dropdown2>
       </div>
     </div>
     <!--end::Header-->

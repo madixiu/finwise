@@ -15,9 +15,11 @@
         <ul class="nav nav-pills nav-pills-sm nav-dark-75">
           <li class="nav-item">
             <a
-              class="nav-link py-2 px-4 active"
+              class="nav-link py-2 px-4"
+              :class="{ active: this.show === 'month' }"
               data-toggle="tab"
-              href="#kt_tab_pane_1_1"
+              href="#kt_tab_pane_3_1"
+              @click="show = 'month'"
             >
               Month
             </a>
@@ -26,7 +28,9 @@
             <a
               class="nav-link py-2 px-4"
               data-toggle="tab"
-              href="#kt_tab_pane_1_2"
+              :class="{ active: this.show === 'week' }"
+              href="#kt_tab_pane_2_1"
+              @click="show = 'week'"
             >
               Week
             </a>
@@ -35,7 +39,9 @@
             <a
               class="nav-link py-2 px-4"
               data-toggle="tab"
-              href="#kt_tab_pane_1_3"
+              :class="{ active: this.show === 'day' }"
+              href="#kt_tab_pane_1_1"
+              @click="show = 'day'"
             >
               Day
             </a>
@@ -60,7 +66,7 @@
             </tr>
           </thead>
           <tbody>
-            <template v-for="(item, i) in list">
+            <template v-for="(item, i) in dataToShow">
               <tr v-bind:key="i">
                 <td class="pl-0 py-4">
                   <div class="symbol symbol-50 symbol-light mr-1">
@@ -75,17 +81,13 @@
                 </td>
                 <td class="pl-0">
                   <a
-                    href="#"
                     class="text-dark-75 font-weight-bolder text-hover-primary mb-1 font-size-lg"
                   >
                     {{ item.text1 }}
                   </a>
                   <div>
                     <span class="font-weight-bolder">Email:</span>
-                    <a
-                      class="text-muted font-weight-bold text-hover-primary"
-                      href="#"
-                    >
+                    <a class="text-muted font-weight-bold text-hover-primary">
                       {{ item.text2 }}
                     </a>
                   </div>
@@ -112,7 +114,7 @@
                   </span>
                 </td>
                 <td class="text-right pr-0">
-                  <a href="#" class="btn btn-icon btn-light btn-sm">
+                  <a class="btn btn-icon btn-light btn-sm">
                     <span class="svg-icon svg-icon-md svg-icon-primary">
                       <!--begin::Svg Icon-->
                       <inline-svg
@@ -121,7 +123,7 @@
                       <!--end::Svg Icon-->
                     </span>
                   </a>
-                  <a href="#" class="btn btn-icon btn-light btn-sm mx-3">
+                  <a class="btn btn-icon btn-light btn-sm mx-3">
                     <span class="svg-icon svg-icon-md svg-icon-primary">
                       <!--begin::Svg Icon-->
                       <inline-svg
@@ -130,7 +132,7 @@
                       <!--end::Svg Icon-->
                     </span>
                   </a>
-                  <a href="#" class="btn btn-icon btn-light btn-sm">
+                  <a class="btn btn-icon btn-light btn-sm">
                     <span class="svg-icon svg-icon-md svg-icon-primary">
                       <!--begin::Svg Icon-->
                       <inline-svg
@@ -159,7 +161,64 @@ export default {
   name: "widget-2",
   data() {
     return {
-      list: [
+      show: "day",
+      month: [
+        {
+          text0: "media/svg/misc/015-telegram.svg",
+          text1: "Application Development",
+          text2: "app@dev.com",
+          text3: "$4,600,000",
+          text4: "Python, MySQL",
+          text5: "In Progress",
+          text6: "warning"
+        },
+        {
+          text0: "media/svg/misc/006-plurk.svg",
+          text1: "Sant Outstanding",
+          text2: "bprow@bnc.cc",
+          text3: "$2,000,000",
+          text4: "ReactJs, HTML",
+          text5: "Approved",
+          text6: "primary"
+        },
+        {
+          text0: "media/svg/misc/003-puzzle.svg",
+          text1: "Payrol Application",
+          text2: "company@dev.com",
+          text3: "$560,000",
+          text4: "Laravel, Metronic",
+          text5: "Success",
+          text6: "success"
+        },
+        {
+          text0: "media/svg/misc/005-bebo.svg",
+          text1: "HR Management System",
+          text2: "hr@demo.com",
+          text3: "$57,000",
+          text4: "AngularJS, C#",
+          text5: "Rejected",
+          text6: "danger"
+        },
+        {
+          text0: "media/svg/misc/014-kickstarter.svg",
+          text1: "KTR Mobile Application",
+          text2: "ktr@demo.com",
+          text3: "$45,200,000",
+          text4: "ReactJS, Ruby",
+          text5: "In Progress",
+          text6: "warning"
+        }
+      ],
+      week: [
+        {
+          text0: "media/svg/misc/014-kickstarter.svg",
+          text1: "KTR Mobile Application",
+          text2: "ktr@demo.com",
+          text3: "$45,200,000",
+          text4: "ReactJS, Ruby",
+          text5: "In Progress",
+          text6: "warning"
+        },
         {
           text0: "media/svg/misc/006-plurk.svg",
           text1: "Sant Outstanding",
@@ -195,6 +254,44 @@ export default {
           text4: "AngularJS, C#",
           text5: "Rejected",
           text6: "danger"
+        }
+      ],
+      day: [
+        {
+          text0: "media/svg/misc/003-puzzle.svg",
+          text1: "Payrol Application",
+          text2: "company@dev.com",
+          text3: "$560,000",
+          text4: "Laravel, Metronic",
+          text5: "Success",
+          text6: "success"
+        },
+        {
+          text0: "media/svg/misc/006-plurk.svg",
+          text1: "Sant Outstanding",
+          text2: "bprow@bnc.cc",
+          text3: "$2,000,000",
+          text4: "ReactJs, HTML",
+          text5: "Approved",
+          text6: "primary"
+        },
+        {
+          text0: "media/svg/misc/015-telegram.svg",
+          text1: "Application Development",
+          text2: "app@dev.com",
+          text3: "$4,600,000",
+          text4: "Python, MySQL",
+          text5: "In Progress",
+          text6: "warning"
+        },
+        {
+          text0: "media/svg/misc/005-bebo.svg",
+          text1: "HR Management System",
+          text2: "hr@demo.com",
+          text3: "$57,000",
+          text4: "AngularJS, C#",
+          text5: "Rejected",
+          text6: "danger"
         },
         {
           text0: "media/svg/misc/014-kickstarter.svg",
@@ -209,8 +306,15 @@ export default {
     };
   },
   components: {},
+  methods: {},
   computed: {
-    ...mapGetters(["layoutConfig"])
+    ...mapGetters(["layoutConfig"]),
+    dataToShow() {
+      if (this.show === "month") return this.month;
+      if (this.show === "week") return this.week;
+      if (this.show === "day") return this.day;
+      return this.day;
+    }
   }
 };
 </script>
