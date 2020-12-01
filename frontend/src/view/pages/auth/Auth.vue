@@ -63,7 +63,7 @@
 
 <!-- Load login custom page styles -->
 <style lang="scss">
-@import "@/assets/sass/pages/login/login-4.scss";
+@import "@/assets/sass/pages/login/login-1.scss";
 </style>
 
 <script>
@@ -77,7 +77,7 @@ export default {
       errors: state => state.auth.errors
     }),
     backgroundImage() {
-      return process.env.BASE_URL + "media/bg/bg-1.jpg";
+      return process.env.BASE_URL + "media/bg/bg-4.jpg";
     }
   }
 };

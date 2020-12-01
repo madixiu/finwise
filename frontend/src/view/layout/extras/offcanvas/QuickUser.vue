@@ -12,12 +12,12 @@
       <span
         class="text-dark-50 font-weight-bolder font-size-base d-none d-md-inline mr-3"
       >
-        Sean
+        {{ currentUserPersonalInfo.name }}
       </span>
       <span class="symbol symbol-35 symbol-light-success">
-        <img v-if="false" alt="Pic" :src="picture" />
+        <img v-if="false" alt="Pic" :src="currentUserPersonalInfo.photo" />
         <span v-if="true" class="symbol-label font-size-h5 font-weight-bold">
-          S
+          {{ currentUserPersonalInfo.name.charAt(0).toUpperCase() }}
         </span>
       </span>
     </div>
@@ -53,16 +53,20 @@
         <!--begin::Header-->
         <div class="d-flex align-items-center mt-5">
           <div class="symbol symbol-100 mr-5">
-            <img class="symbol-label" :src="picture" alt="" />
+            <img
+              class="symbol-label"
+              :src="currentUserPersonalInfo.photo"
+              alt=""
+            />
             <i class="symbol-badge bg-success"></i>
           </div>
           <div class="d-flex flex-column">
-            <a
-              href="#"
+            <router-link
+              to="/custom-pages/profile"
               class="font-weight-bold font-size-h5 text-dark-75 text-hover-primary"
             >
-              James Jones
-            </a>
+              {{ getFullName }}
+            </router-link>
             <div class="text-muted mt-1">Application Developer</div>
             <div class="navi mt-2">
               <a href="#" class="navi-item">
@@ -77,7 +81,7 @@
                     </span>
                   </span>
                   <span class="navi-text text-muted text-hover-primary">
-                    jm@softplus.com
+                    {{ currentUserPersonalInfo.email }}
                   </span>
                 </span>
               </a>
@@ -111,7 +115,9 @@
                 </div>
               </div>
               <div class="navi-text">
-                <div class="font-weight-bold">My Profile</div>
+                <router-link to="/custom-pages/profile">
+                  <div class="font-weight-bold">My Profile</div>
+                </router-link>
                 <div class="text-muted">
                   Account settings and more
                   <span
@@ -258,7 +264,8 @@
 </style>
 
 <script>
-// import { LOGOUT } from "@/core/services/store/auth.module";
+import { mapGetters } from "vuex";
+import { LOGOUT } from "@/core/services/store/auth.module";
 import KTLayoutQuickUser from "@/assets/js/layout/extended/quick-user.js";
 import KTOffcanvas from "@/assets/js/components/offcanvas.js";
 
@@ -305,7 +312,7 @@ export default {
   methods: {
     onLogout() {
       this.$store
-        .dispatch("LOGOUT")
+        .dispatch(LOGOUT)
         .then(() => this.$router.push({ name: "login" }));
     },
     closeOffcanvas() {
@@ -313,8 +320,14 @@ export default {
     }
   },
   computed: {
-    picture() {
-      return process.env.BASE_URL + "media/users/300_21.jpg";
+    ...mapGetters(["currentUserPersonalInfo"]),
+
+    getFullName() {
+      return (
+        this.currentUserPersonalInfo.name +
+        " " +
+        this.currentUserPersonalInfo.surname
+      );
     }
   }
 };
