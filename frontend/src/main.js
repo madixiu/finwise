@@ -89,7 +89,8 @@ import "@/core/plugins/inline-svg";
 import "@/core/plugins/apexcharts";
 import "@/core/plugins/metronic";
 import "@mdi/font/css/materialdesignicons.css";
-
+import "@/core/plugins/treeselect";
+import "@/core/plugins/formvalidation";
 // API service init
 // ApiService.init();
 WsService.init();
