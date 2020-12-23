@@ -32,58 +32,22 @@ import JwtService from "@/core/services/jwt.service";
 export default {
   name: "Finwise",
   mounted() {
-    if (
-      this.$route.name !== "login" &&
-      !this.$store.getters.isAuthenticated &&
-      !JwtService.getToken()
-    ) {
-      // next({ name: "login" });
-      this.$router.push({ name: "login" });
-      // this.$router.push({ name: "verify" });
-
-      console.log("nothing");
-    } else if (JwtService.getToken() && !this.$store.getters.isAuthenticated) {
-      console.log("here1");
-      console.log(!!this.$store.getters.currentUser.length);
-      let hasUser = !!this.$store.getters.currentUser.length;
-      if (hasUser) {
-        console.log("has");
-        // var LoginData;
-        this.verifyAccessToken(this.$store.getters.currentUserAccessToken);
-      } else if (this.$store.isAuthenticated) {
-        this.$router.push({ path: "/" });
-        // return;
-        // this.$router.beforeEach((to, from, next) => {
-        //   // reset config to initial state
-        //   // store.dispatch(RESET_LAYOUT_CONFIG);
-        //   next();
-        //   // router.push({ name: "dashboard" });
-        //   // Scroll page to top on every route change
-        //   setTimeout(() => {
-        //     window.scrollTo(0, 0);
-        //   }, 100);
-        // });
-      } else if (!hasUser) {
-        console.log("else if");
-        let refreshToken = this.CryptoJS.AES.decrypt(
-          JwtService.getToken(),
-          "key"
-        ).toString(this.CryptoJS.enc.Utf8);
-        console.log(refreshToken);
-
-        this.getAccessTokenAndUser(refreshToken);
-        // let token = this.$store.getters.currentUserAccessToken;
-
-        // this.getQueryUser();
-
-        console.log(this.$store.getters.currentUserAccessToken);
+    this.$router.beforeEach((to, from, next) => {
+      console.log("fi");
+      console.log(to.name);
+      console.log(from.name);
+      // Promise.all(this.checkAuth()).then(next());
+      if (to.name != "login" && !this.checkAuth()) {
+        console.log(this.checkAuth()); 
+        next({ name: "login" });
+       
+      } else {
+        console.log(this.checkAuth());
+        next();
       }
-      // else {
-      //   console.log("else");
-      //   this.$router.push({ name: "login" });
-      //   return;
-      // }
-    }
+
+      // next();
+    });
 
     /**
      * this is to override the layout config using saved data from localStorage
@@ -92,23 +56,75 @@ export default {
     // this.$store.dispatch(OVERRIDE_LAYOUT_CONFIG);
   },
   methods: {
+    checkAuth() {
+      if (
+        this.$router.name !== "login" &&
+        !this.$store.getters.isAuthenticated &&
+        !JwtService.getToken()
+      ) {
+        // next({ name: "login" });
+        // next({ path: "/login" });
+        // this.$router.push({ name: "login" });
+        console.log("nothing");
+        return false;
+      } else if (
+        JwtService.getToken() &&
+        !this.$store.getters.isAuthenticated
+      ) {
+        console.log("here1");
+        console.log(!!this.$store.getters.currentUser.length);
+        let hasUser = !!this.$store.getters.currentUser.length;
+        if (hasUser) {
+          console.log("has");
+          // var LoginData;
+          this.verifyAccessToken(this.$store.getters.currentUserAccessToken);
+          return true;
+        } else if (!hasUser) {
+          console.log("else if");
+          let refreshToken = this.CryptoJS.AES.decrypt(
+            JwtService.getToken(),
+            "key"
+          ).toString(this.CryptoJS.enc.Utf8);
+          console.log(refreshToken);
+
+          if (this.getAccessTokenAndUser(refreshToken)) {
+            // next();
+            return true;
+          } else {
+            this.$store.dispatch("LOGOUT");
+            return false;
+            // next({ name: "login" });
+            // this.$router.push({ name: "login" });
+          }
+
+          // let token = this.$store.getters.currentUserAccessToken;
+
+          // this.getQueryUser();
+          // console.log(this.$store.getters.currentUserAccessToken);
+        }
+        // else {
+        //   console.log("else");
+        //   this.$router.push({ name: "login" });
+        //   return;
+        // }
+      }
+    },
     getQueryUser() {
       // let token = this.$store.getters.currentUserAccessToken;
       this.$apollo
         .query({
           query: GET_USER
-          // headers: {
-          // authorization: token ? `JWT ${token}` : ""
-          // }
-          // variables: {
-          //   userId
-          //   }
         })
         .then(data => {
           console.log("query");
           console.log(data.data.me);
           this.$store.dispatch("LOGIN", data.data.me);
-          this.$router.push({ path: "/" });
+          return true;
+          // this.$router.push({ path: "/" });
+        })
+        .catch(error => {
+          console.log(error);
+          return false;
         });
     },
     verifyAccessToken(AccessToken) {
@@ -124,7 +140,7 @@ export default {
           let LoginData = data.data.verifyToken;
           console.log(LoginData.success);
           if (LoginData.success) {
-            this.$router.push({ name: "Dashboard" });
+            // this.$router.push({ name: "Dashboard" });
           } else if (LoginData == false) {
             let Rtoken = this.CryptoJS.AES.decrypt(
               JwtService.getToken(),
@@ -138,7 +154,7 @@ export default {
         });
     },
     getAccessTokenAndUser(RefreshToken) {
-      console.log(RefreshToken);
+      // console.log(RefreshToken);
       console.log("we are in");
       this.$apollo
         .mutate({
@@ -157,16 +173,17 @@ export default {
               // store new acc token to vuex
 
               this.$store.dispatch("RenewAccessToken", LoginData.token);
-              this.getQueryUser();
-              this.$router.push({ name: "Dashboard" });
+              return this.getQueryUser();
+              // return true;
             } else {
               console.log(LoginData.errors.nonFieldErrors[0].message);
-              this.$store.dispatch("LOGOUT");
-              this.$router.push({ name: "login" });
+              return false;
+
               // this.$router.push({ name: "verify" });
             }
           } else {
             console.log(LoginData.errors.nonFieldErrors[0].message);
+            return false;
           }
         })
         .catch(error => {
